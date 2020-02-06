@@ -1,0 +1,25 @@
+﻿@model WeatherApp.ViewModels.CityForecastViewModel
+
+<div style="display: flex; flex-direction: row; align-items: center; padding: 6px 0">
+    <div>
+        <img src="https://openweathermap.org/img/wn/@Model.Icon@@2x.png" width="64" height="64">
+    </div>
+    <div style="display: flex; flex-direction: column;">
+        <div style="display: flex; flex-direction: row; align-items: center;">
+            <a asp-action="City" asp-route-id="@Model.Id"
+               style="cursor: pointer">
+                @Model.Name, @Model.Country
+            </a>
+            <img src="https://www.countryflags.io/@Model.Country/flat/32.png" width="24" height="24" style="margin: 0 4px;">
+            <span>@Model.WeatherDescription</span>
+        </div>
+        <div>
+            <span><b>@Model.Temp °С</b></span>
+            <span>
+                temperature from @Model.TempMin to @Model.TempMax °С,
+                winds @Model.WindSpeed m/s,
+                clouds @Model.Clouds %
+            </span>
+        </div>
+    </div>
+</div>

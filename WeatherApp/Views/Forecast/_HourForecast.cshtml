@@ -1,0 +1,23 @@
+﻿@model WeatherApp.ViewModels.HourForecastViewModel
+
+<div class="container">
+    <div class="row align-items-center">
+        <div>
+            @String.Format("{0:HH/mm}", Model.Date)
+
+        </div>
+        <div style="width: 100px;">
+            <img src="https://openweathermap.org/img/wn/@Model.Icon@@2x.png" width="64" height="64">
+        </div>
+        <div class="col">
+            <div>
+                <span><b>@Model.Temp °С</b></span>
+                <span>@Model.WeatherDescription</span>
+            </div>
+            <div>
+                <span>wind: @Model.WindSpeed m/s,</span>
+                <span>clouds: @Model.Clouds %</span>
+            </div>
+        </div>
+    </div>
+</div>

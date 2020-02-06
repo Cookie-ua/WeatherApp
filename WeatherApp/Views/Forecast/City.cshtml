@@ -1,0 +1,50 @@
+﻿@model WeatherApp.ViewModels.ForecastViewModel
+@{
+    ViewData["Title"] = $"{Model.CurrentForecast.Name}, {Model.CurrentForecast.Country}";
+}
+
+<div class="row justify-content-center">
+    <div class="col-md-6 text-center">
+        <h3>@Model.CurrentForecast.Name, @Model.CurrentForecast.Country</h3>
+        <div style="color: grey">
+            @Model.CurrentForecast.WeatherDescription
+        </div>
+        <div style="color: grey">
+            Updated @String.Format("{0:HH/mm}", Model.CurrentForecast.Date)
+        </div>
+        <div class="row align-items-center justify-content-center">
+            <div class="h5">
+                @Model.CurrentForecast.Temp °С
+            </div>
+            <div style="width: 70px; height: 70px;">
+                <img src="https://openweathermap.org/img/wn/@Model.CurrentForecast.Icon@@2x.png" width="70" height="70">
+            </div>
+        </div>
+        <div>
+            <span>Winds: @Model.CurrentForecast.WindSpeed m/s,</span>
+            <span>Pressure: @Model.CurrentForecast.Pressure mm,</span>
+        </div>
+        <div>
+            <span>Humidity: @Model.CurrentForecast.Humidity %,</span>
+            @{
+                if (@Model.CurrentForecast.Visibility != 0)
+                {
+                    <span>Visibility: @Model.CurrentForecast.Visibility m</span>
+                }
+            }
+        </div>
+    </div>
+</div>
+<br />
+<div class="row justify-content-center">
+    <div class="col-md-6">
+        <h5>Hourly forecast in @Model.CurrentForecast.Name, @Model.CurrentForecast.Country</h5>
+        @{
+            foreach (var item in Model.HourForecast)
+            {
+                <hr />
+                <partial name="_HourForecast" model="item" />
+            }
+        }
+    </div>
+</div>
